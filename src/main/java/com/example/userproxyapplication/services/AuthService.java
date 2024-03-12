@@ -13,6 +13,7 @@ import io.jsonwebtoken.security.MacAlgorithm;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMapAdapter;
 
@@ -45,9 +46,9 @@ public class AuthService {
         User user = userOptional.get();
 
         //Validation
-//        if (!bCryptPasswordEncoder.matches(password, user.getPassword())) {
-//            return null;
-//        }
+       //if (!bCryptPasswordEncoder.matches(password, user.getPassword())) {
+           //return null;
+       //}
 
         //String token = RandomStringUtils.randomAlphanumeric(30);
 
@@ -84,14 +85,14 @@ public class AuthService {
 
         UserDto userDto = User.from(user);
 
-//        Map<String, String> headers = new HashMap<>();
-//        headers.put(HttpHeaders.SET_COOKIE, token);
+        Map<String, String> headers = new HashMap<>();
+        headers.put(HttpHeaders.SET_COOKIE, token);
 
-        MultiValueMapAdapter<String, String> headers = new MultiValueMapAdapter<>(new HashMap<>());
-        headers.add(HttpHeaders.SET_COOKIE, "auth-token:" + token);
+        MultiValueMapAdapter<String, String> headers1 = new MultiValueMapAdapter<>(new HashMap<>());
+        headers1.add(HttpHeaders.SET_COOKIE, "auth-token:" + token);
 
-        ResponseEntity<UserDto> response = new ResponseEntity<>(userDto, headers, HttpStatus.OK);
-//        response.getHeaders().add(HttpHeaders.SET_COOKIE, token);
+        ResponseEntity<UserDto> response = new ResponseEntity<>(userDto, headers1, HttpStatus.OK);
+       response.getHeaders().add(HttpHeaders.SET_COOKIE, token);
 
         return response;
     }
@@ -113,6 +114,7 @@ public class AuthService {
     }
 
     public UserDto signUp(String email, String password) {
+
         User user = new User();
         user.setEmail(email);
         //user.setPassword(bCryptPasswordEncoder.encode(password));
