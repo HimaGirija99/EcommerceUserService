@@ -26,7 +26,9 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
+
+
+        <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
@@ -84,6 +86,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -94,10 +97,7 @@
             <version>2.2.224</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
